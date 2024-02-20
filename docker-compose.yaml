@@ -1,0 +1,28 @@
+# create your docker-compose here
+version: '3'
+services:
+  postgres:
+    image: 'postgres:13.3-alpine'
+    container_name: fashion-campus-db
+    environment:
+      POSTGRES_DB: fashion-campus-db
+      POSTGRES_USER: users
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: 34.142.244.100
+      POSTGRES_PORT: 5432
+    ports:
+      - '5432:5432'
+
+  flask-app:
+    build: .
+    container_name: fashion-campus-app
+    env_file:
+      - '.env'
+    environment:
+      - FLASK_DEBUG=1
+      - FLASK_APP-./app.py
+      - PYTHONUNBUFFERED=1=value
+    depends_on:
+      - postgres
+    ports:
+      - '5000:5000'

@@ -1,0 +1,11 @@
+final-project/
+*.pyc
+__pycache__/
+.vscode/
+final-project/app/model/Model_VVG16_newdataset.pt
+
+# SQLite
+*.db
+
+# files
+*.csv
